@@ -190,7 +190,7 @@ $('download').addEventListener('click',()=>{
 });
 $('bottomGroup').setAttribute('aria-disabled','true');
 
-const publishedTime=document.getElementById('published-time'); if(publishedTime && publishedTime.dateTime){const publicationDate=new Date(publishedTime.dateTime);if(!Number.isNaN(publicationDate.valueOf()))publishedTime.textContent=new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(publicationDate);}
+document.addEventListener('DOMContentLoaded',()=>{const publishedTime=document.getElementById('published-time');if(publishedTime && publishedTime.dateTime){const publicationDate=new Date(publishedTime.dateTime);if(!Number.isNaN(publicationDate.valueOf()))publishedTime.textContent=new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(publicationDate);}});
 </script>
 <footer class="publish-meta"><span>Kitchen Colour Studio</span><span>Version <strong>v{{ site.time | date: "%Y.%m.%d.%H%M%S" }}</strong> · Published <time id="published-time" datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: "%b %-d, %Y at %-I:%M %p UTC" }}</time></span></footer>
 </body>
