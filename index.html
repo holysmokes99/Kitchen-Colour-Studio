@@ -1,3 +1,5 @@
+---
+---
 <!doctype html>
 <html lang="en">
 <head>
@@ -15,7 +17,7 @@ header{display:flex;align-items:end;justify-content:space-between;gap:20px;margi
 label.range{display:block;font-size:12px;color:var(--muted);margin:10px 0 4px}input[type=range]{display:block;width:100%;height:42px;margin:0;accent-color:var(--accent);cursor:pointer;touch-action:pan-y}.swatches{display:flex;flex-wrap:wrap;gap:11px;margin-top:12px}.swatch{width:31px;height:31px;border-radius:50%;border:2px solid white;box-shadow:0 0 0 1px #aeb8b5;cursor:pointer;touch-action:manipulation}.swatch:focus{outline:2px solid var(--accent);outline-offset:3px}.actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}button{border:1px solid var(--line);background:white;color:var(--ink);border-radius:11px;padding:11px 14px;font:inherit;font-size:13px;font-weight:650;cursor:pointer;touch-action:manipulation;min-height:46px}button.primary{background:var(--accent);color:white;border-color:var(--accent)}button:hover{filter:brightness(.97)}button:focus-visible,input:focus-visible{outline:3px solid #91b5a4;outline-offset:2px}.small{font-size:12px;color:var(--muted);margin-top:12px}.group[aria-disabled="true"]{opacity:.48}.group[aria-disabled="true"] input,.group[aria-disabled="true"] button{pointer-events:none}
 @media(max-width:980px){.layout{grid-template-columns:1fr}.preview{position:static}.wrap{padding:clamp(12px,3vw,24px)}header{margin-bottom:17px}.controls{padding:18px}}
 @media(max-width:600px){.wrap{padding:12px}.layout{gap:12px}.preview,.controls{border-radius:16px}.preview{padding:8px}.note{font-size:11px}.controls{padding:16px}.controls h2{font-size:22px}.group{padding:14px 0}.swatches{gap:12px}.swatch{width:34px;height:34px}}
-</style>
+.publish-meta{display:flex;justify-content:space-between;align-items:center;gap:12px;border-top:1px solid var(--line);margin-top:18px;padding:15px 2px 2px;color:var(--muted);font-size:12px}.publish-meta strong{color:var(--ink);font-weight:650}@media(max-width:600px){.publish-meta{align-items:flex-start;flex-direction:column;gap:4px}}</style>
 </head>
 <body>
 <div class="wrap">
@@ -187,6 +189,9 @@ $('download').addEventListener('click',()=>{
  overlay.src=url;
 });
 $('bottomGroup').setAttribute('aria-disabled','true');
+
+const publishedTime=document.getElementById('published-time'); if(publishedTime && publishedTime.dateTime){const publicationDate=new Date(publishedTime.dateTime);if(!Number.isNaN(publicationDate.valueOf()))publishedTime.textContent=new Intl.DateTimeFormat(undefined,{dateStyle:'medium',timeStyle:'short'}).format(publicationDate);}
 </script>
+<footer class="publish-meta"><span>Kitchen Colour Studio</span><span>Version <strong>v{{ site.time | date: "%Y.%m.%d.%H%M%S" }}</strong> · Published <time id="published-time" datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: "%b %-d, %Y at %-I:%M %p UTC" }}</time></span></footer>
 </body>
 </html>
